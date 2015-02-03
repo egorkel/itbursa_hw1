@@ -18,12 +18,29 @@
 <div class="col-xs-12">
     <h1>Список гостей</h1>
 </div>
-<div class="col-xs-4 invited" ng-repeat="guest in main.guests">
-    {{guest.name}}
-<!--<div class="col-xs-4 invited">-->
-    <!--{{main.guests[0].name}}-->
+<div class="col-xs-4 invited">
+    <div ng-repeat="guest in main.guests | filter: {inHall: true}">
+        <div class="item" ng-click="main.move(guest)">
+            {{guest.name}}
+        </div>
+        <div class="delete">
+            <a class="btn btn-danger" href="#" role="button">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+    </div>
 </div>
 <div class="col-xs-4 in-hall">
+    <div ng-repeat="guest in main.guests | filter: {inHall: false}">
+        <div class="item" ng-click="main.move(guest)">
+            {{guest.name}}
+        </div>
+        <div class="delete">
+            <a class="btn btn-danger" href="#" role="button">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+    </div>
 </div>
 <div class="col-xs-4">
     <h2>Новый гость</h2>

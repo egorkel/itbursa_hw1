@@ -1,37 +1,6 @@
 var ws = new WebSocket("ws://f2.smartjs.academy/ws");
 var data = [];
 
-//function render() {
-//
-//  var $invited = $('.invited');
-//  var $inHall = $('.in-hall');
-//
-//  function renderItem(record) {
-//    var $item = $('<div class="item">').text(record.name)
-//        .data('id', record.id)
-//      ;
-//
-//    if (!record.inHall) {
-//      $item.prepend($('<div class="delete"><a class="btn btn-danger" href="#" role="button"><span class="glyphicon glyphicon-remove"></span></a></div>'));
-//    }
-//
-//    return $item;close
-//  }
-//
-//  $invited.html('');
-//  $inHall.html('');
-//
-//  _(data).filter('inHall').forEach(function (record) {
-//    $inHall.append(renderItem(record));
-//  });
-//
-//  _(data).reject('inHall').forEach(function (record) {
-//    $invited.append(renderItem(record));
-//  });
-//
-//
-//}
-
 (function() {
   var app = angular.module("hw1App", []);
 
@@ -41,8 +10,11 @@ var data = [];
     $http.get("http://f2.smartjs.academy/list").
       success(function (data) {
         ctrl.guests = data;
-        alert(ctrl.guests[0].name + " " + ctrl.guests.length);
       });
+
+    this.move = function (guest) {
+      guest.inHall = !guest.inHall;
+    };
   }]);
 }());
 
