@@ -1,7 +1,7 @@
 (function() {
   var app = angular.module("hw1App", []);
 
-  app.controller("mainCtrl", ["$http", function ($http) {
+  app.controller("mainCtrl", ["$http", "$scope", function ($http, $scope) {
     this.guests = [];
     var ctrl = this;
     $http.get("http://f2.smartjs.academy/list").
@@ -34,10 +34,7 @@
           });
           break;
       }
-
-      //var removeGuest = JSON.parse(evt.data).remove.id;
-      //console.log(removeGuest);
-
+      $scope.$apply();
     };
 
     this.move = function (guest) {
