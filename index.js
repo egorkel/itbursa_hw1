@@ -32,6 +32,12 @@ function render() {
 
 }
 
+(function() {
+  var app = angular.module("hw1App", []);
+  app.controller("guestCtrl", function () {
+    this.guests = data;
+  });
+}());
 
 $(function () {
 
