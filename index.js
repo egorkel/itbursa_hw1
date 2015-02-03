@@ -11,15 +11,33 @@
 
     var ws = new WebSocket("ws://f2.smartjs.academy/ws");
     ws.onmessage = function(evt){
-      var addGuest = {
-        id: JSON.parse(evt.data).guest.id,
-        name: JSON.parse(evt.data).guest.name,
-        inHall: JSON.parse(evt.data).guest.inHall
-      };
+      switch (JSON.parse(evt.data).action)
+      {
+        case "add":
+          var addGuest = {
+            id: JSON.parse(evt.data).guest.id,
+            name: JSON.parse(evt.data).guest.name,
+            inHall: JSON.parse(evt.data).guest.inHall
+          };
+          ctrl.guests.push(addGuest);
+          break;
+        case "remove":
+          ctrl.guests = ctrl.guests.filter(function (elem) {
+            return elem.id !== JSON.parse(evt.data).id;
+          });
+          break;
+        case "update":
+          ctrl.guests.forEach(function (guest) {
+            if (guest.id === JSON.parse(evt.data).guest.id) {
+              guest.inHall = JSON.parse(evt.data).guest.inHall;
+            }
+          });
+          break;
+      }
 
-      var removeGuest = JSON.parse(evt.data).remove.id;
-      console.log(removeGuest);
-      ctrl.guests.push(addGuest);
+      //var removeGuest = JSON.parse(evt.data).remove.id;
+      //console.log(removeGuest);
+
     };
 
     this.move = function (guest) {
