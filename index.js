@@ -1,6 +1,13 @@
 (function() {
   var app = angular.module("hw1App", []);
 
+  app.directive("guestsList", function () {
+    return {
+      restrict: "E",
+      templateUrl: "guestList.html"
+      };
+  });
+
   app.controller("mainCtrl", ["$http", "$scope", function ($http, $scope) {
     this.guests = [];
     var ctrl = this;
@@ -11,25 +18,26 @@
 
     var ws = new WebSocket("ws://f2.smartjs.academy/ws");
     ws.onmessage = function(evt){
-      switch (JSON.parse(evt.data).action)
+      var data = JSON.parse(evt.data);
+      switch (data.action)
       {
         case "add":
           var addGuest = {
-            id: JSON.parse(evt.data).guest.id,
-            name: JSON.parse(evt.data).guest.name,
-            inHall: JSON.parse(evt.data).guest.inHall
+            id: data.guest.id,
+            name: data.guest.name,
+            inHall: data.guest.inHall
           };
           ctrl.guests.push(addGuest);
           break;
         case "remove":
           ctrl.guests = ctrl.guests.filter(function (elem) {
-            return elem.id !== JSON.parse(evt.data).id;
+            return elem.id !== data.id;
           });
           break;
         case "update":
           ctrl.guests.forEach(function (guest) {
-            if (guest.id === JSON.parse(evt.data).guest.id) {
-              guest.inHall = JSON.parse(evt.data).guest.inHall;
+            if (guest.id === data.guest.id) {
+              guest.inHall = data.guest.inHall;
             }
           });
           break;

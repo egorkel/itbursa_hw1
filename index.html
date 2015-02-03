@@ -18,17 +18,18 @@
 <div class="col-xs-12">
     <h1>Список гостей</h1>
 </div>
-<div class="col-xs-4 invited">
-    <h2>Прибывшие гости</h2>
-    <div class="record" ng-repeat="guest in main.guests | filter: {inHall: true}">
-        <div class="item" ng-click="main.move(guest)">
-            {{guest.name}}
-        </div>
-        <div class="delete">
-            <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="main.del(guest)"></button>
-        </div>
-    </div>
-</div>
+<!--<div class="col-xs-4 invited">-->
+    <!--<h2>Прибывшие гости</h2>-->
+    <!--<div class="record" ng-repeat="guest in main.guests | filter: {inHall: true}">-->
+        <!--<div class="item" ng-click="main.move(guest)">-->
+            <!--{{guest.name}}-->
+        <!--</div>-->
+        <!--<div class="delete">-->
+            <!--<button class="btn btn-danger glyphicon glyphicon-remove" ng-click="main.del(guest)"></button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<guests-list ng-init="listTitle ='Прибывшие гости'"></guests-list>
 <div class="col-xs-4 in-hall">
     <h2>Приглашенные гости</h2>
     <div class="record" ng-repeat="guest in main.guests | filter: {inHall: false}">
