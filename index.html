@@ -14,12 +14,14 @@
     <!--<script src="index.js"></script>-->
 
 </head>
+
 <body ng-controller="mainCtrl as main">
 <div class="col-xs-12">
     <h1>Список гостей</h1>
 </div>
 <div class="col-xs-4 invited">
-    <div ng-repeat="guest in main.guests | filter: {inHall: true}">
+    <h2>Прибывшие гости</h2>
+    <div class="record" ng-repeat="guest in main.guests | filter: {inHall: true}">
         <div class="item" ng-click="main.move(guest)">
             {{guest.name}}
         </div>
@@ -31,7 +33,8 @@
     </div>
 </div>
 <div class="col-xs-4 in-hall">
-    <div ng-repeat="guest in main.guests | filter: {inHall: false}">
+    <h2>Приглашенные гости</h2>
+    <div class="record" ng-repeat="guest in main.guests | filter: {inHall: false}">
         <div class="item" ng-click="main.move(guest)">
             {{guest.name}}
         </div>
