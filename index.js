@@ -15,30 +15,16 @@ var data = [];
     this.move = function (guest) {
       guest.inHall = !guest.inHall;
     };
+
+    this.del = function (guest) {
+      this.guests = this.guests.filter(function (elem) {
+        return elem.id !== guest.id;
+      });
+    };
   }]);
 }());
 
 //$(function () {
-//
-//  $.ajax('http://f2.smartjs.academy/list').then(function (dataFromServer) {
-//    data = dataFromServer;
-//    render();
-//  });
-//
-//  render();
-//
-//  $('.invited, .in-hall')
-//    .on('click', '.item', function () {
-//
-//      var item = _.find(data, {id: $(this).data('id')});
-//      item.inHall = !item.inHall;
-//      ws.send(JSON.stringify({
-//        action: 'update',
-//        guest: item
-//      }));
-//
-//      render();
-//    })
 //    .on('click', '.item .delete', function () {
 //      var id = $(this).parents('.item').data('id');
 //      data = _.reject(data, { id: id });
