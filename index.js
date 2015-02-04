@@ -1,13 +1,6 @@
 (function() {
   var app = angular.module("hw1App", []);
 
-  app.directive("guestsList", function () {
-    return {
-      restrict: "E",
-      templateUrl: "guestList.html"
-      };
-  });
-
   app.controller("mainCtrl", ["$http", "$scope", function ($http, $scope) {
     this.guests = [];
     var ctrl = this;
@@ -85,4 +78,14 @@
       }));
     };
   }]);
+
+  app.controller("invitedCtrl", function () {
+    this.listTitle = "Прибывшие гости";
+    this.val = true;
+  });
+
+  app.controller("inhallCtrl", function () {
+    this.listTitle = "Приглашенные гости";
+    this.val = false;
+  });
 }());

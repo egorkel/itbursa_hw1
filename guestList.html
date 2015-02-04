@@ -1,6 +1,6 @@
 <div class="col-xs-4 invited">
-    <h2>{{listTitle}}</h2>
-    <div class="record" ng-repeat="guest in main.guests | filter: {inHall: true}">
+    <h2>{{ctrl.listTitle}}</h2>
+    <div class="record" ng-repeat="guest in main.guests | filter: {inHall: ctrl.val}">
         <div class="item" ng-click="main.move(guest)">
             {{guest.name}}
         </div>
